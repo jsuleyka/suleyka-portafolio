@@ -6,48 +6,48 @@
 
 window.addEventListener("load", animatedList, false);
 
-function animatedList() {  
+function animatedList() {
   var list = document.querySelector("#ani-list");
   var listItems = list.querySelectorAll("li");
   var str = [];
-    
+
   for (var i = 0; i < listItems.length; i++) {
-    str.push(listItems[i].innerText);    
+    str.push(listItems[i].innerText);
   }
-    
-  function typer(elem, liStr, clock) {   
+
+  function typer(elem, liStr, clock) {
     var typeStr = "";
     var i = 0;
-    
+
     elem.innerText = "";
-    
+
     var timer = Math.floor(clock / liStr.length * 0.5);
-    
-    document.addEventListener("visibilitychange", 
+
+    document.addEventListener("visibilitychange",
       function() {
         if (document.visibilityState == "hidden"){
           clearTimeout(typeForward);
           return;
-        }        
+        }
       }
     , false);
-    
+
     var typeForward = setInterval(
      function() {
        if (i == liStr.length) {
          clearInterval(typeForward);
          elem.innerText = liStr;
          typePause(elem, liStr, clock);
-       }       
+       }
        else {
          typeStr += liStr[i];
          elem.innerText = typeStr;
          i++;
        }
-       
+
      }
     , timer);
-    
+
 }
 }
 (function($) {
